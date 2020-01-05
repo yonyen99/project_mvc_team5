@@ -128,7 +128,7 @@
             <option value="0" disabled selected>Class:</option>
             <?php
             foreach ($data['class_data'] as $rows) {
-              ?>
+            ?>
               <option value="<?php echo $rows['id']; ?>"><?php echo $rows['title']; ?><a href="index1.php"></a></option>
             <?php
             }
@@ -136,7 +136,14 @@
           </select>
         </div>
       </div>
-      <div class="col-1"></div>
+      <div class="col-1">
+
+        <a href="login.php" class="float-right">
+          <img class="img-fluid img-thumbnail mx-auto d-block" style="width: 40px; height: 40px;" src="https://cdn0.iconfinder.com/data/icons/large-glossy-icons/512/User_logout.png" alt="userlogout">
+          <p>LOG OUT</p>
+        </a>
+
+      </div>
     </div>
   </div>
 
