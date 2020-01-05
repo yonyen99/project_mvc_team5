@@ -31,6 +31,36 @@ function form_data(&$data) {
     header("Location: index1.php?action=$action");
 }
 
+// edit student
+
+function edit(&$data) {
+    $data['student'] = student_detail();
+    $data['class'] = get_class_data();
+    $data['page'] = "students/edit";
+}
+
+function edit_data(&$data) {
+    $edit = student_edit($_POST);
+    if($edit) {
+        $action = "view";
+    }else {
+        echo "Error";
+    }
+    header("Location: index1.php?action=$action");
+}
+
+//delete function
+function delete(&$data) {
+    //code here
+    $result = m_delete();
+    if($result) {
+        $action = "view";
+    }else {
+        echo "Cannot delete this record!!!";
+    }
+    header("Location: index1.php?action=$action");
+}
+
 
 
 

@@ -63,6 +63,18 @@ function student_add_data($data) {
     return $result;
 }
 
+function student_detail() {
+    include "connection.php";
+    $id = $_GET['id'];
+    $query = "SELECT st.id,firstname,lastname,sex,cl.title 
+                FROM student st 
+                LEFT JOIN class cl ON cl.id = st.class_id WHERE st.id = $id";
+
+  
+    $result = mysqli_query($connection,$query);
+    return $result;
+}
+
 function get_class_data() {
     $query = "select * from class";
     include "connection.php";
@@ -87,6 +99,28 @@ function get_subject_data() {
         }
     }
     return $rows;
+}
+
+/// delete student
+function m_delete() {
+    include "connection.php";
+    $id = $_GET['id'];
+    $result = mysqli_query($connection, "DELETE FROM student WHERE id= $id");
+    return $result;
+}
+
+//// edit student 
+
+function student_edit(&$data){
+    include_once "connection.php";
+    $id = $_GET['id'];
+    $fname = $_POST['fname'];
+    $lname = $_POST['lname'];
+    $sex = $_POST['sex'];
+    $class = $_POST['class'];
+    $query = "UPDATE student SET firstname='$fname',lastname='$lname',sex='$sex',class_id='$class'  WHERE id = $id";
+    $update = mysqli_query($connection,$query);
+    return $update;
 }
 
 
