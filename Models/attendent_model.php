@@ -63,3 +63,37 @@ function get_subject_data()
     return $rows;
 }
 
+function m_delete_atttendents() {
+    include "connection.php";
+    $id = $_GET['id'];
+    $result = mysqli_query($connection, "DELETE FROM attendents WHERE id= $id");
+    return $result;
+}
+
+function edit_attendant() {
+    include "connection.php";
+    $id = $_GET['id'];
+    $query =  "SELECT * FROM attendents WHERE id = $id";
+    $result = mysqli_query($connection,$query);
+    
+    return $result;
+}
+
+function attendant_edit(){
+    $id = $_GET['id'];
+    include_once "connection.php";
+    $fname = $_POST['fname'];
+    $lname = $_POST['lname'];
+    $sex = $_POST['sex'];
+    // $class_id = $_POST['class'];
+    // $subjects = $_POST['subjects'];
+    $permissions = $_POST['permissions'];
+    $description = $_POST['description'];
+
+    $query = "UPDATE attendents SET firstname = '$fname',
+     lastname= '$lname', sex= '$sex', permission= '$permissions', 
+     description='$description' WHERE id = $id ";
+     $result = mysqli_query($connection, $query);
+     return $result;
+}
+

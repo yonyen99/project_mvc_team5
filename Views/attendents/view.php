@@ -31,7 +31,7 @@
       <td><?php echo $rows['permission'];?></td>
       <td><?php echo $rows['description'];?></td>
       <td>
-        <a href="index1.php?action=edit&id=<?php echo $rows['id'];?>"><i class="material-icons">edit</i></a>
+        <a href="index4.php?action=edit&id=<?php echo $rows['id'];?>"><i class="material-icons">edit</i></a>
         <a href="index4.php?action=delete&id=<?php echo $rows['id'];?>"><i class="material-icons" onclick="return confirm('Are you sure you want to delete?');">delete</i></a>
       </td>
     </tr>
