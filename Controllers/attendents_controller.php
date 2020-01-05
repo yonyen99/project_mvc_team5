@@ -31,4 +31,35 @@ function permission(&$data) {
     header("Location: index4.php?action=$action");
 } 
 
+//delete function
+function delete(&$data) {
+    //code here
+    $result = m_delete_atttendents();
+    if($result) {
+        $action = "view";
+    }else {
+        echo "Cannot delete this record!!!";
+    }
+    header("Location: index4.php?action=$action");
+}
+
+// edit
+function edit(&$data){
+    $data['attendents_data'] = edit_attendant();
+    $data['class_data'] = get_class_data();
+    $data['subject_data'] = get_subject_data();
+
+    $data['page'] = "attendents/edit";
+}
+function edit_form(&$data){
+    $result = attendant_edit();
+    if($result){
+        $action = "view";
+    }else{
+        echo("cannot edit");
+    }
+    header("Location:index4.php?action= $action");
+}
+
+
 
