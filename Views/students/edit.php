@@ -6,8 +6,8 @@
                 <h2>Student Information Form</h2>
             </div>
             <?php
-            if(isset($data['student_data'])){
-                foreach($data['student_data'] as $rows){
+            if(isset($data['student'])){
+                foreach($data['student'] as $rows){
             ?>
             <form action="index1.php?action=edit_data&id=<?php echo $rows['id']; ?>" method="post">
                 <div class="card-body">
@@ -29,7 +29,7 @@
                         <label for="class">Class:</label>
                         <select name="class" id="class" class="form-control">
                             <?php
-                            foreach ($data['class_data'] as $row) { ?>
+                            foreach ($data['class'] as $row) { ?>
                                 <option <?php if($rows['title']== $row['title']){?> selected="selected"<?php }?> value="<?php echo $row['id']; ?>"><?php echo $row['title']; ?></option>
                             <?php
                             }
