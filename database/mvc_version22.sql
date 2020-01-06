@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 05, 2020 at 08:39 AM
+-- Generation Time: Jan 06, 2020 at 03:12 AM
 -- Server version: 10.1.38-MariaDB
 -- PHP Version: 7.3.4
 
@@ -30,19 +30,38 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `attendents` (
   `id` int(11) NOT NULL,
-  `firstname` varchar(25) DEFAULT NULL,
-  `lastname` varchar(25) DEFAULT NULL,
-  `sex` varchar(25) DEFAULT NULL,
-  `permission` varchar(25) DEFAULT NULL,
-  `description` varchar(25) DEFAULT NULL
+  `firstname` varchar(45) DEFAULT NULL,
+  `lastname` varchar(45) DEFAULT NULL,
+  `sex` varchar(45) DEFAULT NULL,
+  `permission` varchar(45) DEFAULT NULL,
+  `description` varchar(45) DEFAULT NULL,
+  `class_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `attendents`
 --
 
-INSERT INTO `attendents` (`id`, `firstname`, `lastname`, `sex`, `permission`, `description`) VALUES
-(1, 'yon', 'yen', 'Male', 'yes', 'sick');
+INSERT INTO `attendents` (`id`, `firstname`, `lastname`, `sex`, `permission`, `description`, `class_id`) VALUES
+(3, 'yen', 'yon', 'Male', 'Yes', 'sick', 3);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `attendents_subjects`
+--
+
+CREATE TABLE `attendents_subjects` (
+  `attendents_id` int(11) NOT NULL,
+  `subjects_id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `attendents_subjects`
+--
+
+INSERT INTO `attendents_subjects` (`attendents_id`, `subjects_id`) VALUES
+(3, 3);
 
 -- --------------------------------------------------------
 
@@ -86,7 +105,10 @@ INSERT INTO `student` (`id`, `firstname`, `lastname`, `sex`, `class_id`) VALUES
 (27, 'yon', 'yen', 'Male', 2),
 (28, 'start to opend', 'yen', 'Male', 2),
 (30, 'yon', 'ranan', 'Male', 2),
-(32, 'yen', 'yon', 'Female', 3);
+(32, 'yen', 'yon', 'Female', 3),
+(34, 'Rithclever', 'yon', 'Male', 2),
+(35, 'e', 'yon', 'Male', 3),
+(36, 'yen', 'yon', 'Male', 3);
 
 -- --------------------------------------------------------
 
@@ -104,7 +126,10 @@ CREATE TABLE `student_has_subjects` (
 --
 
 INSERT INTO `student_has_subjects` (`student_id`, `subjects_id`) VALUES
-(32, 3);
+(32, 3),
+(34, 3),
+(35, 3),
+(36, 3);
 
 -- --------------------------------------------------------
 
@@ -123,8 +148,7 @@ CREATE TABLE `subjects` (
 
 INSERT INTO `subjects` (`id`, `sub_title`) VALUES
 (3, 'Databases'),
-(10, 'mvc'),
-(11, 'photoshops');
+(10, 'mvc');
 
 -- --------------------------------------------------------
 
@@ -155,7 +179,16 @@ INSERT INTO `users` (`id`, `username`, `email`, `user_type`, `password`) VALUES
 -- Indexes for table `attendents`
 --
 ALTER TABLE `attendents`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `fk_attendents_class_idx` (`class_id`);
+
+--
+-- Indexes for table `attendents_subjects`
+--
+ALTER TABLE `attendents_subjects`
+  ADD PRIMARY KEY (`attendents_id`,`subjects_id`),
+  ADD KEY `fk_attendents_subjects_subjects1_idx` (`subjects_id`),
+  ADD KEY `fk_attendents_subjects_attendents1_idx` (`attendents_id`);
 
 --
 -- Indexes for table `class`
@@ -198,29 +231,42 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `attendents`
 --
 ALTER TABLE `attendents`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `class`
 --
 ALTER TABLE `class`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `student`
 --
 ALTER TABLE `student`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
 
 --
 -- AUTO_INCREMENT for table `subjects`
 --
 ALTER TABLE `subjects`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- Constraints for dumped tables
 --
+
+--
+-- Constraints for table `attendents`
+--
+ALTER TABLE `attendents`
+  ADD CONSTRAINT `fk_attendents_class` FOREIGN KEY (`class_id`) REFERENCES `class` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `attendents_subjects`
+--
+ALTER TABLE `attendents_subjects`
+  ADD CONSTRAINT `fk_attendents_subjects_attendents1` FOREIGN KEY (`attendents_id`) REFERENCES `attendents` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `fk_attendents_subjects_subjects1` FOREIGN KEY (`subjects_id`) REFERENCES `subjects` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `student`
