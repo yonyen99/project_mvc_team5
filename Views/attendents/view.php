@@ -9,8 +9,8 @@
       <th scope="col">ID</th>
       <th scope="col">FullName</th>
       <th scope="col">Sex</th>
-      <!-- <th scope="col">Class</th> -->
-      <!-- <th scope="col">Subject</th> -->
+      <th scope="col">Class</th>
+      <th scope="col">Subject</th>
       <th scope="col">Permission</th>
       <th scope="col">Description</th>
       <th scope="col">Action</th>
@@ -26,8 +26,8 @@
       <td><?php echo $id;?></td>
       <td><?php echo $rows['firstname']." ".$rows['lastname'];?></td>
       <td><?php echo $rows['sex'];?></td>
-      <!-- <td><?php echo $rows['title'];?></td> -->
-      <!-- <td><?php echo implode(", ",$rows['sub_title']);?></td> -->
+      <td><?php echo $rows['title'];?></td>
+      <td><?php echo implode(", ",$rows['sub_title']);?></td>
       <td><?php echo $rows['permission'];?></td>
       <td><?php echo $rows['description'];?></td>
       <td>
