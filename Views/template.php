@@ -123,18 +123,7 @@
     <div class="row">
       <div class="col-2"></div>
       <div class="col-9">
-        <div class="form-group">
-          <select class="form-control" name="permissions">
-            <option value="0" disabled selected>Class:</option>
-            <?php
-            foreach ($data['class_data'] as $rows) {
-            ?>
-              <option value="<?php echo $rows['id']; ?>"><?php echo $rows['title']; ?><a href="index1.php"></a></option>
-            <?php
-            }
-            ?>
-          </select>
-        </div>
+       
       </div>
       <div class="col-1">
 
