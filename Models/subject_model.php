@@ -1,5 +1,4 @@
 <?php
-
 function subject_get_data() {
     $query = "select * from subjects";
     include "connection.php";
@@ -30,28 +29,6 @@ function subject() {
 
     return $result;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 function subject_detail() {
     $id = $_GET['id'];
     $query =  "SELECT * FROM subjects WHERE id = $id";
@@ -80,4 +57,3 @@ function delete_subject() {
     return $result;
 }
 
-//edit

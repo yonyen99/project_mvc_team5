@@ -59,23 +59,3 @@ function edit_subject(&$data) {
     }
     header("Location: index3.php?action=$action");
 }
-//edit
-
-
-function edit(&$data)
-{
-    $data['student'] = m_detail();
-    $data['page'] = 'test/edit';
-}
-
-
-function edit_student(&$data)
-{
-    $data = m_edit($_POST);
-    if ($data) {
-        $action = 'view';
-    } else {
-        $action = 'edit';
-    }
-    header("Location: index.php?action=$action");
-}
